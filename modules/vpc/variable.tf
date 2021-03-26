@@ -49,3 +49,15 @@ variable "acl_rules" {
     to_port     = number
   }))
 }
+
+variable "sg" {
+  type = object({
+    name = string
+    ingress_rules = list(object({
+      from     = number
+      to       = number
+      protocol = string
+      cidrs    = list(string)
+    }))
+  })
+}

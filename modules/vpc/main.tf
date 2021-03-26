@@ -105,3 +105,24 @@ resource "aws_default_route_table" "main" {
     Name = var.default_route_table_name
   }
 }
+
+resource "aws_security_group" "main" {
+  name   = var.sg.name
+  vpc_id = aws_vpc.main.id
+
+  dynamic "ingress" {
+    for_each = var.sg.ingress_rules
+    iterator = _conf
+
+    content {
+      from_port   = _conf.value.from
+      to_port     = _conf.value.to
+      protocol    = _conf.value.protocol
+      cidr_blocks = _conf.value.cidrs
+    }
+  }
+
+  tags = {
+    Name = var.sg.name
+  }
+}
