@@ -8,6 +8,8 @@ terraform moduleの記事のコードサンプルを格納する。
 
 # システム構成
 
+[sys_ach](./images/terraform_module_sys_arch.png)
+
 # ディレクトリ構成
 
 ```
