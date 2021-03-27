@@ -23,6 +23,10 @@ resource "aws_network_interface" "main" {
 }
 
 resource "aws_eip" "main" {
+  depends_on = [
+    aws_instance.main
+  ]
+
   vpc               = true
   network_interface = aws_network_interface.main.id
   tags = {
